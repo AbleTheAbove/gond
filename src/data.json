@@ -1,30 +1,21 @@
 {
-    "entity_count": 7,
+    "entity_count": 4,
     "names": {
-        "2": null,
+        "1": "Farmer",
         "0": "Seattle",
-        "5": null,
-        "3": null,
-        "6": null,
-        "1": null,
-        "4": null
+        "3": "Craftsman",
+        "2": "Banker"
     },
     "money": {
         "0": 0,
         "2": 0,
-        "4": 0,
         "1": 0,
-        "3": 0,
-        "5": 0,
-        "6": 0
+        "3": 0
     },
     "quantity": {
         "0": null,
-        "1": 1,
         "3": 1,
-        "4": 1,
-        "2": 1,
-        "5": 1,
-        "6": 1
+        "1": 1,
+        "2": 1
     }
 }
