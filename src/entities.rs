@@ -5,43 +5,54 @@ use std::collections::HashMap;
 
 #[derive(Debug, Serialize)]
 pub struct GameState {
+    // has worlds, nations, regions, provinces, popgroups, resources
     pub entity_count: Id,
-    pub names: HashMap<Id, Option<Name>>,
-    pub money: HashMap<Id, Option<Money>>,
-    pub quantity: HashMap<Id, Option<Quantity>>,
+    pub worlds: Worlds,
+    //pub nations: Nations,
+    //pub regions: Regions,
+    //pub provinces: Provinces,
+    //pub pop_groups: PopGroups,
+    //pub resources: Resources,
 }
 
 impl GameState {
     pub fn new() -> GameState {
         GameState {
             entity_count: 0,
-            names: HashMap::new(),
-            money: HashMap::new(),
-            quantity: HashMap::new(),
+            worlds: Worlds::new(),
+            //nations: Nations::new(),
+            //regions: Regions::new(),
+            //provinces: Provinces::new(),
+            //pop_groups: PopGroups::new(),
+            //resources: Resources::new(),
         }
     }
 
-    pub fn new_entity(
-        &mut self,
-        name: Option<Name>,
-        currency: Option<Money>,
-        quantity: Option<Quantity>,
-    ) {
-        let id = self.entity_count;
-        self.names.insert(id, name);
-        self.money.insert(id, currency);
-        self.quantity.insert(id, quantity);
+    pub fn add_world(&mut self, name: Option<Name>, owner: Option<Name>, regions: Vec<RegionId>) {
+        self.worlds.names.insert(self.entity_count, name);
+        self.worlds.owners.insert(self.entity_count, owner);
+        self.worlds.regions.insert(self.entity_count, regions);
         self.entity_count += 1;
     }
 }
 
 #[derive(Debug, Serialize)]
-struct Worlds {
-    // has regions, nations, name, owner
-// can change names
+pub struct Worlds {
+    names: HashMap<Id, Option<Name>>,
+    owners: HashMap<Id, Option<Name>>,
+    regions: HashMap<Id, Vec<RegionId>>,
+    // can change names
 }
 
-impl Worlds {}
+impl Worlds {
+    pub fn new() -> Worlds {
+        Worlds {
+            names: HashMap::new(),
+            owners: HashMap::new(),
+            regions: HashMap::new(),
+        }
+    }
+}
 
 #[derive(Debug, Serialize)]
 struct Nations {
